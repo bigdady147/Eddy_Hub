@@ -1,0 +1,20 @@
+/* Tailwind v4 Configuration */
+@theme {
+    /* Colors */
+    --color-background: #0f172a;
+    --color-surface: rgba(30, 41, 59, 0.5);
+
+    --color-primary: #3b82f6;
+    --color-primary-hover: #2563eb;
+
+    --color-accent-cyan: #06b6d4;
+    --color-accent-purple: #8b5cf6;
+    --color-accent-pink: #ec4899;
+
+    /* Shadows */
+    --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    --shadow-glow: 0 0 20px rgba(59, 130, 246, 0.5);
+
+    /* Fonts */
+    --font-sans: Inter, ui-sans-serif, system-ui;
+}

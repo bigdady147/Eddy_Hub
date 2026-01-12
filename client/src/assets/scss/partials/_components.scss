@@ -1,0 +1,36 @@
+@layer components {
+
+    /* Define Gradients Manually */
+    .bg-gradient-primary {
+        background-image: linear-gradient(to right, var(--color-primary), var(--color-accent-cyan));
+    }
+
+    .bg-gradient-accent {
+        background-image: linear-gradient(to right, var(--color-accent-purple), var(--color-accent-pink));
+    }
+
+    /* Glassmorphism Card Utils */
+    .glass-panel {
+        @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-glass rounded-2xl;
+    }
+
+    .glass-input {
+        @apply w-full bg-slate-800/50 border border-slate-700/50 rounded-lg px-4 py-3 outline-none transition-all text-white placeholder-slate-500 focus:ring-2 focus:ring-primary/50 focus:border-primary/50 focus:bg-slate-800/80;
+    }
+
+    .glass-btn {
+        @apply w-full text-white font-semibold py-3 rounded-lg shadow-lg shadow-primary/20 transition-all transform active:scale-95 hover:opacity-90 hover:shadow-glow;
+        background-image: linear-gradient(to right, var(--color-primary), var(--color-accent-cyan));
+    }
+
+    /* Text Utils */
+    .text-gradient {
+        @apply bg-clip-text text-transparent;
+        background-image: linear-gradient(to right, var(--color-primary), var(--color-accent-cyan));
+    }
+
+    .text-gradient-accent {
+        @apply bg-clip-text text-transparent;
+        background-image: linear-gradient(to right, var(--color-accent-purple), var(--color-accent-pink));
+    }
+}
