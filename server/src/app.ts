@@ -20,14 +20,27 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 import authRoutes from './modules/auth/auth.routes';
+import featureRoutes from './modules/features/feature.routes';
+import { featureRequestRoutes } from './modules/feature-requests';
+
+console.log('=== Routes Debug ===');
+console.log('Auth Routes:', typeof authRoutes);
+console.log('Feature Routes:', typeof featureRoutes);
+console.log('Feature Request Routes:', typeof featureRequestRoutes);
+console.log('Feature Request Routes is Router?', featureRequestRoutes?.name === 'router');
 
 import { errorHandler } from './middlewares/error.middleware';
 
 // API Routes
 app.use('/api/v1/auth', authRoutes);
+app.use('/api/v1/features', featureRoutes);
+app.use('/api/v1/feature-requests', featureRequestRoutes);
+
+console.log('✅ All routes registered');
 
 // Global Error Handler
 app.use(errorHandler);
+
 
 
 

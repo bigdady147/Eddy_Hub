@@ -6,6 +6,7 @@ import { emailService } from '../services/email.service';
 import { ApiError } from '../../core/ApiError';
 import { ApiResponse } from '../../core/ApiResponse';
 import { asyncHandler } from '../../core/asyncHandler';
+import { permissionService } from '../permissions/permission.service';
 
 
 export const register = async (req: Request, res: Response, next: NextFunction) => {
@@ -64,6 +65,9 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
 
         const token = generateToken({ id: user._id, role: user.role });
 
+        // Get user's features using permission service
+        const userFeatures = await permissionService.getUserFeatures(user._id.toString());
+
         res.status(200).json({
             success: true,
             data: {
@@ -74,7 +78,8 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
                     email: user.email,
                     fullName: user.fullName,
                     role: user.role,
-                    avatar: user.avatar
+                    avatar: user.avatar,
+                    features: userFeatures
                 }
             }
         });
@@ -93,9 +98,15 @@ export const getMe = async (req: Request, res: Response, next: NextFunction) => 
             return res.status(404).json({ success: false, message: 'User not found' });
         }
 
+        // Get user's features using permission service
+        const userFeatures = await permissionService.getUserFeatures(userId);
+
         res.status(200).json({
             success: true,
-            data: user
+            data: {
+                ...user.toObject(),
+                features: userFeatures
+            }
         });
     } catch (error) {
         next(error);

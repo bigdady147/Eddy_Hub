@@ -10,5 +10,14 @@ export const coreRoutes: RouteRecordRaw[] = [
             requiresAuth: true,
             layout: MainLayout 
         }
+    },
+    {
+        path: '/feature-selection',
+        name: 'FeatureSelection',
+        component: () => import('./views/FeatureSelectionView.vue'),
+        meta: { 
+            requiresAuth: true,
+            layout: MainLayout 
+        }
     }
 ];

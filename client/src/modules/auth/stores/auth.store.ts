@@ -6,6 +6,15 @@ import { useUIStore } from '../../core/stores/ui.store';
 import { useToastStore } from '../../core/stores/toast.store';
 import { STORAGE_KEYS } from '../../../constants';
 
+interface Feature {
+    _id: string;
+    name: { vi: string; en: string; };
+    key: string;
+    description: { vi: string; en: string; };
+    icon: string;
+    isActive: boolean;
+}
+
 interface User {
     id: string;
     username: string;
@@ -13,6 +22,7 @@ interface User {
     role: string;
     avatar?: string;
     fullName?: string;
+    features?: Feature[];
 }
 
 export const useAuthStore = defineStore('auth', () => {
@@ -75,6 +85,24 @@ export const useAuthStore = defineStore('auth', () => {
         try {
             const response = await authService.getMe();
             user.value = response.data.data;
+        } catch (error: any) {
+            // Nếu getMe bị lỗi (500 hoặc lỗi khác), tự động logout
+            console.error('Failed to fetch user:', error);
+            const statusCode = error.response?.status;
+            
+            // Logout và yêu cầu đăng nhập lại
+            token.value = null;
+            user.value = null;
+            localStorage.removeItem(STORAGE_KEYS.TOKEN);
+            
+            // Hiển thị thông báo cho user
+            const message = statusCode === 500 
+                ? 'Session expired or server error. Please login again.' 
+                : error.response?.data?.message || 'Authentication failed. Please login again.';
+            toastStore.addToast({ message, type: 'error' });
+            
+            // Redirect về trang login
+            router.push('/login');
         } finally {
             uiStore.setLoading(false);
         }
@@ -110,10 +138,24 @@ export const useAuthStore = defineStore('auth', () => {
         }
     }
 
+    // Computed property for user's features
+    const userFeatures = computed(() => user.value?.features || []);
+    
+    // Helper method to check if user has permission for a feature
+    const hasFeaturePermission = (featureId: string): boolean => {
+        if (!user.value) return false;
+        // Admin has access to all features
+        if (user.value.role === 'admin') return true;
+        // Check if feature is in user's features list
+        return userFeatures.value.some(f => f._id === featureId);
+    };
+
     return {
         user,
         token,
         isAuthenticated,
+        userFeatures,
+        hasFeaturePermission,
         login,
         register,
         logout,

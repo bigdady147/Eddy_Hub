@@ -1,5 +1,53 @@
 {
-    "welcome": "Welcome to Mini Tools",
+  "app": {
+    "title": "Eddy Tools",
+    "subtitle": "A professional developer toolkit for productivity and file operations",
+    "brand": "EddyHub"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "tools": "Tools",
+    "settings": "Settings",
+    "admin": "Admin"
+  },
+  "auth": {
     "login": "Login",
-    "tools": "Tools"
+    "logout": "Logout",
+    "register": "Register",
+    "welcomeBack": "Welcome Back",
+    "signInSubtitle": "Sign in to access your tools",
+    "email": "Email",
+    "emailPlaceholder": "you@example.com",
+    "password": "Password",
+    "passwordPlaceholder": "••••••••",
+    "forgotPassword": "Forgot password?",
+    "signIn": "Sign In",
+    "dontHaveAccount": "Don't have an account?",
+    "createAccount": "Create account",
+    "loginFailed": "Login failed",
+    "emailRequired": "Email is required",
+    "invalidEmail": "Invalid email address",
+    "passwordMinLength": "Password must be at least 6 characters"
+  },
+  "features": {
+    "locked": "LOCKED",
+    "findAccessHere": "Find Access Here",
+    "access": "Access",
+    "noFeaturesFound": "No features found",
+    "chooseYourFeatures": "Choose Your Features",
+    "featureSelectionSubtitle": "Select the tools you need access to",
+    "featuresSelected": "{count} features selected",
+    "skipForNow": "Skip for Now",
+    "submitRequests": "Submit Requests",
+    "selectAtLeastOne": "Please select at least one feature",
+    "requestsSubmitted": "Feature requests submitted successfully",
+    "loadError": "Failed to load features",
+    "submitError": "Failed to submit requests"
+  },
+  "footer": {
+    "copyright": "© {year} EddyHub. All rights reserved.",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "contact": "Contact"
+  }
 }

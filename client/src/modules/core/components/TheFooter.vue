@@ -5,25 +5,23 @@
     <div
       class="container mx-auto px-4 py-6 flex flex-col md:flex-row items-center justify-between gap-4"
     >
-      <p class="text-slate-500 text-sm">
-        &copy; {{ new Date().getFullYear() }} EddyHub. All rights reserved.
-      </p>
+      <p class="text-slate-500 text-sm">{{ $t('footer.copyright', { year: new Date().getFullYear() }) }}</p>
       <div class="flex items-center gap-6">
         <a
           href="#"
           class="text-slate-500 hover:text-white transition-colors text-sm"
-          >Privacy Policy</a
-        >
+          v-text="$t('footer.privacyPolicy')"
+        ></a>
         <a
           href="#"
           class="text-slate-500 hover:text-white transition-colors text-sm"
-          >Terms of Service</a
-        >
+          v-text="$t('footer.termsOfService')"
+        ></a>
         <a
           href="#"
           class="text-slate-500 hover:text-white transition-colors text-sm"
-          >Contact</a
-        >
+          v-text="$t('footer.contact')"
+        ></a>
       </div>
     </div>
   </footer>

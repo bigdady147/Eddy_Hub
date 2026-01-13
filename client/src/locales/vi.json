@@ -1,5 +1,53 @@
 {
-    "welcome": "Chào mừng đến với Mini Tools",
+  "app": {
+    "title": "Eddy Tools",
+    "subtitle": "Bộ công cụ đa năng cho mọi nhu cầu của bạn",
+    "brand": "EddyHub"
+  },
+  "nav": {
+    "dashboard": "Trang chủ",
+    "tools": "Công cụ",
+    "settings": "Cài đặt",
+    "admin": "Quản trị"
+  },
+  "auth": {
     "login": "Đăng nhập",
-    "tools": "Công cụ"
+    "logout": "Đăng xuất",
+    "register": "Đăng ký",
+    "welcomeBack": "Chào mừng trở lại",
+    "signInSubtitle": "Đăng nhập để truy cập công cụ của bạn",
+    "email": "Email",
+    "emailPlaceholder": "you@example.com",
+    "password": "Mật khẩu",
+    "passwordPlaceholder": "••••••••",
+    "forgotPassword": "Quên mật khẩu?",
+    "signIn": "Đăng nhập",
+    "dontHaveAccount": "Chưa có tài khoản?",
+    "createAccount": "Tạo tài khoản",
+    "loginFailed": "Đăng nhập thất bại",
+    "emailRequired": "Email là bắt buộc",
+    "invalidEmail": "Địa chỉ email không hợp lệ",
+    "passwordMinLength": "Mật khẩu phải có ít nhất 6 ký tự"
+  },
+  "features": {
+    "locked": "BỊ KHÓA",
+    "findAccessHere": "Tìm truy cập",
+    "access": "Truy cập",
+    "noFeaturesFound": "Không có chức năng nào được tìm thấy",
+    "chooseYourFeatures": "Chọn tính năng của bạn",
+    "featureSelectionSubtitle": "Chọn các công cụ bạn cần truy cập",
+    "featuresSelected": "{count} tính năng đã chọn",
+    "skipForNow": "Bỏ qua",
+    "submitRequests": "Gửi yêu cầu",
+    "selectAtLeastOne": "Vui lòng chọn ít nhất một tính năng",
+    "requestsSubmitted": "Yêu cầu đã được gửi thành công",
+    "loadError": "Không thể tải danh sách tính năng",
+    "submitError": "Không thể gửi yêu cầu"
+  },
+  "footer": {
+    "copyright": "© {year} EddyHub. Bản quyền thuộc về.",
+    "privacyPolicy": "Chính sách bảo mật",
+    "termsOfService": "Điều khoản dịch vụ",
+    "contact": "Liên hệ"
+  }
 }

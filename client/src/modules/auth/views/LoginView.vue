@@ -1,37 +1,39 @@
 <script setup lang="ts">
 import { useRouter } from "vue-router";
+import { useI18n } from "vue-i18n";
 import { useAuthStore } from "../stores/auth.store";
 import { Form } from "vee-validate";
 import { toTypedSchema } from "@vee-validate/zod";
 import * as z from "zod";
 import BaseInput from "../../core/components/BaseInput.vue";
 import BaseButton from "../../core/components/BaseButton.vue";
-import { ref } from "vue";
+import { ref, computed } from "vue";
 
 const router = useRouter();
 const authStore = useAuthStore();
+const { t } = useI18n();
 const errorMsg = ref("");
 const isLoading = ref(false);
 
 // Define Validation Schema
-const schema = toTypedSchema(
+const schema = computed(() => toTypedSchema(
   z.object({
     email: z
       .string()
-      .min(1, "Email is required")
-      .email("Invalid email address"),
-    password: z.string().min(6, "Password must be at least 6 characters"),
+      .min(1, t('auth.emailRequired'))
+      .email(t('auth.invalidEmail')),
+    password: z.string().min(6, t('auth.passwordMinLength')),
   })
-);
+));
 
 const onSubmit = async (values: any) => {
   try {
     isLoading.value = true;
     errorMsg.value = "";
     await authStore.login(values);
-    router.push("/");
+    router.push("/feature-selection");
   } catch (err: any) {
-    errorMsg.value = err.response?.data?.message || "Login failed";
+    errorMsg.value = err.response?.data?.message || t('auth.loginFailed');
   } finally {
     isLoading.value = false;
   }
@@ -42,8 +44,8 @@ const onSubmit = async (values: any) => {
   <div class="min-h-screen flex items-center justify-center p-4">
     <div class="glass-panel w-full max-w-md p-8">
       <div class="text-center mb-8">
-        <h1 class="text-3xl font-bold text-gradient">Welcome Back</h1>
-        <p class="text-slate-400 mt-2">Sign in to access your tools</p>
+        <h1 class="text-3xl font-bold text-gradient" v-text="$t('auth.welcomeBack')"></h1>
+        <p class="text-slate-400 mt-2" v-text="$t('auth.signInSubtitle')"></p>
       </div>
 
       <Form @submit="onSubmit" :validation-schema="schema" class="space-y-6">
@@ -56,38 +58,38 @@ const onSubmit = async (values: any) => {
 
         <BaseInput
           name="email"
-          label="Email"
+          :label="$t('auth.email')"
           type="email"
-          placeholder="you@example.com"
+          :placeholder="$t('auth.emailPlaceholder')"
         />
 
         <BaseInput
           name="password"
-          label="Password"
+          :label="$t('auth.password')"
           type="password"
-          placeholder="••••••••"
+          :placeholder="$t('auth.passwordPlaceholder')"
         />
 
         <div class="flex justify-end">
           <router-link
             to="/forgot-password"
             class="text-xs text-slate-400 hover:text-white transition-colors"
-          >
-            Forgot password?
-          </router-link>
+            v-text="$t('auth.forgotPassword')"
+          ></router-link>
         </div>
 
-        <BaseButton type="submit" :loading="isLoading"> Sign In </BaseButton>
+        <BaseButton type="submit" :loading="isLoading">
+          <span v-text="$t('auth.signIn')"></span>
+        </BaseButton>
       </Form>
 
       <div class="mt-6 text-center text-sm text-slate-500">
-        Don't have an account?
+        {{ $t('auth.dontHaveAccount') }}
         <router-link
           to="/register"
           class="text-primary hover:text-primary-hover font-medium transition-colors"
-        >
-          Create account
-        </router-link>
+          v-text="$t('auth.createAccount')"
+        ></router-link>
       </div>
     </div>
   </div>

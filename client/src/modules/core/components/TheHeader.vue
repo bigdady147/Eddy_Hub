@@ -37,21 +37,26 @@ const handleLogout = () => {
         <router-link
           to="/"
           class="text-sm font-medium text-slate-300 hover:text-white transition-colors"
+          v-text="$t('nav.dashboard')"
+        ></router-link>
+        <router-link
+          v-if="user?.role === 'admin'"
+          to="/admin/dashboard"
+          class="text-sm font-medium text-yellow-400 hover:text-yellow-300 transition-colors flex items-center gap-1"
         >
-          Dashboard
+          <span>👑</span>
+          <span v-text="$t('nav.admin')"></span>
         </router-link>
         <a
           href="#"
           class="text-sm font-medium text-slate-300 hover:text-white transition-colors"
-        >
-          Tools
-        </a>
+          v-text="$t('nav.tools')"
+        ></a>
         <a
           href="#"
           class="text-sm font-medium text-slate-300 hover:text-white transition-colors"
-        >
-          Settings
-        </a>
+          v-text="$t('nav.settings')"
+        ></a>
       </nav>
 
       <!-- User Profile & Language -->
@@ -102,9 +107,9 @@ const handleLogout = () => {
         </div>
         <div v-else>
           <router-link to="/login">
-            <BaseButton variant="primary" class="!py-2 !px-4 text-sm"
-              >Login</BaseButton
-            >
+            <BaseButton variant="primary" class="!py-2 !px-4 text-sm">
+              <span v-text="$t('auth.login')"></span>
+            </BaseButton>
           </router-link>
         </div>
       </div>
